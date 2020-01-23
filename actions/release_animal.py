@@ -16,11 +16,13 @@ def release_animal(arboretum):
 
 
     for index, river in enumerate(arboretum.rivers):
-        print(f'{index + 1}. River {river.id}')
+        print(f'{index + 1}. {river}')
 
     print("Release the animal into which biome?")
     choice = input("> ")
 
-    arboretum.rivers[int(choice) - 1].animals.append(animal)
+    arboretum.rivers[int(choice) - 1].add_animal(animal)
+
+    choice = input("> ")
 
 
