@@ -1,4 +1,5 @@
-from interfaces import Environment
+# from interfaces import Environment
+from environments.environment import Environment
 
 
 class River(Environment):

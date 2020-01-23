@@ -1,5 +1,4 @@
-from interfaces import IAquatic
-
+from ..habitat import IAquatic
 class ISaltwater(IAquatic):
 
     def __init__(self):
