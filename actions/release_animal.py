@@ -25,20 +25,23 @@ def release_animal(arboretum):
     def print_habitats():
         option_list = []
 
-        # if isinstance(animal, classinfo)
-        for index, river in enumerate(arboretum.rivers):
-            river_dict = {index : river}
-            option_list.append(river_dict)
+        if animal.aquatic and animal.cell_type == "hypertonic" or animal.cell_type == "isotonic":
+            for index, river in enumerate(arboretum.rivers):
+                river_dict = (index, river)
+                option_list.append(river_dict)
 
-            print(f'{index + 1}. {river.name} ({river.animal_count()} {"animal" if river.animal_count() == 1 else "animals"})')
+        for index, dic in enumerate(option_list):
+            print(f'{index + 1}. {dic[1].name} ({dic[1].animal_count()} {"animal" if dic[1].animal_count() == 1 else "animals"})')
 
         print("Release the animal into which biome?")
         choice = input("> ")
 
         if choice.isnumeric():
             choice_input = int(choice)
-            if choice_input <= len(arboretum.rivers):
-                if arboretum.rivers[int(choice) - 1].add_animal(animal) == True:
+            choice_biome = option_list[choice_input -1][1]
+
+            if choice_input <= len(arboretum.rivers): 
+                if choice_biome.add_animal(animal) == True:
                     input("\n\nPress any key to continue...")
                 else:
                     Banner.display_banner()

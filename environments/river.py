@@ -15,8 +15,9 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
 
     def add_animal(self, animal):
         if self.animal_count() < self.max_animals:
+
             try:
-                if animal.aquatic and animal.cell_type == "hypertonic":
+                if animal.aquatic and animal.cell_type == "hypertonic" or animal.cell_type == "isotonic":
                     super().add_animal(animal)
                     return True
             except AttributeError:
