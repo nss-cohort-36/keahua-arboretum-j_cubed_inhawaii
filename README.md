@@ -66,9 +66,6 @@ Here are the main features that the application must be able to perform.
 When the user first executes KILLER, they should be welcomed to the system and be presented with the following menu.
 
 ```sh
- +-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-+
- |  K  e  a  h  u  a    A  r  b  o  r  e  t  u  m  |
- +-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-+
 
 1. Annex Biome
 2. Release New Animal

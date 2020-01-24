@@ -1,8 +1,11 @@
 import os
 from environments import River
+from stuff.banner import Banner
 
 def annex_habitat(arboretum):
-    os.system('cls' if os.name == 'nt' else 'clear')
+
+    Banner.display_banner()
+
     print("1. River")
     print("2. Swamp")
     print("3. Coastline")
