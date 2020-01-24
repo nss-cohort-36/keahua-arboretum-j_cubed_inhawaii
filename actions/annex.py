@@ -1,5 +1,6 @@
 import os
 from environments import River
+from environments import Coastline
 from stuff.banner import Banner
 
 def annex_habitat(arboretum):

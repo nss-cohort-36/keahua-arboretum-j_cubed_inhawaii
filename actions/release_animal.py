@@ -27,21 +27,31 @@ def release_animal(arboretum):
 
         if animal.aquatic and animal.cell_type == "hypertonic" or animal.cell_type == "isotonic":
             for index, river in enumerate(arboretum.rivers):
-                river_dict = (index, river)
+                river_dict = {"biome": river, "length": len(arboretum.rivers)}
                 option_list.append(river_dict)
 
-        for index, dic in enumerate(option_list):
-            print(f'{index + 1}. {dic[1].name} ({dic[1].animal_count()} {"animal" if dic[1].animal_count() == 1 else "animals"})')
+        if animal.aquatic and animal.cell_type == "hypotonic" or animal.cell_type == "isotonic":
+            for index, coastline in enumerate(arboretum.coastlines):
+                coastline_dict = {"biome": coastline}
+                option_list.append(coastline_dict)
 
+        for index, dic in enumerate(option_list):
+            print(f'{index + 1}. {dic["biome"].name} ({dic["biome"].animal_count()} {"animal" if dic["biome"].animal_count() == 1 else "animals"})')
+
+        option_list_length = len(option_list)
+        print(f"{option_list_length + 1}. Main Menu")
         print("Release the animal into which biome?")
         choice = input("> ")
+        if int(choice) == option_list_length + 1:
+            return
+        elif choice.isnumeric():
 
-        if choice.isnumeric():
             choice_input = int(choice)
-            choice_biome = option_list[choice_input -1][1]
 
-            if choice_input <= len(arboretum.rivers): 
-                if choice_biome.add_animal(animal) == True:
+            choice_biome = option_list[choice_input -1]
+
+            if choice_input <= option_list_length:
+                if choice_biome["biome"].add_animal(animal) == True:
                     input("\n\nPress any key to continue...")
                 else:
                     Banner.display_banner()
