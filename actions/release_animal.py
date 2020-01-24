@@ -3,7 +3,6 @@ from animals import RiverDolphin
 from stuff.banner import Banner
 
 
-
 def release_animal(arboretum):
     Banner.display_banner()
     animal = None
@@ -21,22 +20,25 @@ def release_animal(arboretum):
 
     Banner.display_banner()
 
-
     def print_habitats():
         option_list = []
 
-        if animal.aquatic and animal.cell_type == "hypertonic" or animal.cell_type == "isotonic":
-            for index, river in enumerate(arboretum.rivers):
-                river_dict = {"biome": river, "length": len(arboretum.rivers)}
-                option_list.append(river_dict)
+        def release_animal_list_maker(condition, biome, list):
+            if condition:
+                for item in biome:
+                    dic = {"biome": item}
+                    list.append(dic)
 
-        if animal.aquatic and animal.cell_type == "hypotonic" or animal.cell_type == "isotonic":
-            for index, coastline in enumerate(arboretum.coastlines):
-                coastline_dict = {"biome": coastline}
-                option_list.append(coastline_dict)
+        release_animal_list_maker(animal.aquatic and animal.cell_type ==
+                                  "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list)
+
+        release_animal_list_maker(animal.aquatic and animal.cell_type ==
+                                  "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
+
 
         for index, dic in enumerate(option_list):
-            print(f'{index + 1}. {dic["biome"].name} ({dic["biome"].animal_count()} {"animal" if dic["biome"].animal_count() == 1 else "animals"})')
+            print(
+                f'{index + 1}. {dic["biome"].name} ({dic["biome"].animal_count()} {"animal" if dic["biome"].animal_count() == 1 else "animals"})')
 
         option_list_length = len(option_list)
         print(f"{option_list_length + 1}. Main Menu")
@@ -48,20 +50,21 @@ def release_animal(arboretum):
 
             choice_input = int(choice)
 
-            choice_biome = option_list[choice_input -1]
+            choice_biome = option_list[choice_input - 1]
 
             if choice_input <= option_list_length:
                 if choice_biome["biome"].add_animal(animal) == True:
                     input("\n\nPress any key to continue...")
                 else:
                     Banner.display_banner()
-                    print("** ** That biome is not large enough ** **\n**** Please choose another one ** **\n")
+                    print(
+                        "** ** That biome is not large enough ** **\n**** Please choose another one ** **\n")
                     print_habitats()
             else:
-                 Banner.display_banner()
-                 print(
-                     f"{choice_input} is not an option. Please choose an option that is available!")
-                 print_habitats()
+                Banner.display_banner()
+                print(
+                    f"{choice_input} is not an option. Please choose an option that is available!")
+                print_habitats()
         else:
             Banner.display_banner()
             print(
