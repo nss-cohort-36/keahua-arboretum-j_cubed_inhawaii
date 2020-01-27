@@ -27,8 +27,8 @@ def release_animal(arboretum):
         ReleaseAnimalListMaker.release_animal_list_maker(animal.aquatic and animal.cell_type ==
                                   "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list)
 
-        # ReleaseAnimalListMaker.release_animal_list_maker(animal.aquatic and animal.cell_type ==
-        #                           "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
+        ReleaseAnimalListMaker.release_animal_list_maker(animal.aquatic and animal.cell_type ==
+                                  "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
 
 
         for index, dic in enumerate(option_list):
