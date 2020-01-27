@@ -17,7 +17,6 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
 
     def add_animal(self, animal):
         if self.animal_count() < self.max_animals:
-
             try:
                 if animal.aquatic and animal.cell_type == "hypertonic" or animal.cell_type == "isotonic":
                     super().add_animal(animal)
@@ -57,15 +56,3 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
     def __str__(self):
         return ReportMaker.report_maker(
             self.name, self.id, super().animal_grouped_list(), super().plant_grouped_list())
-
-
-
-
-
-
-
-
-
-    
-
-

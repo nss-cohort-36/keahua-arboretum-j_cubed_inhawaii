@@ -1,5 +1,5 @@
-from .habitat import ITerrestrial
-from .habitat import IAquatic
+from .terrestrial import ITerrestrial
+from .aquatic import IAquatic
 from .animal import IFreshwater
 from .animal import ISaltwater
 from .animal import IFreshSaltWater
