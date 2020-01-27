@@ -3,6 +3,7 @@ from animals import RiverDolphin
 from utilities import display_banner
 from utilities import release_animal_list_maker
 
+
 def release_animal(arboretum):
     display_banner()
     animal = None
@@ -23,13 +24,11 @@ def release_animal(arboretum):
     def print_habitats():
         option_list = []
 
-
         release_animal_list_maker(animal.aquatic and animal.cell_type ==
                                   "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list)
 
         release_animal_list_maker(animal.aquatic and animal.cell_type ==
                                   "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
-
 
         for index, dic in enumerate(option_list):
             print(f'{index + 1}. {dic["biome"].print_list_options()}')
@@ -52,13 +51,7 @@ def release_animal(arboretum):
                 choice_biome = option_list[choice_input - 1]
 
                 if choice_input <= option_list_length:
-                    if choice_biome["biome"].add_animal(animal) == True:
-                        input("\n\nPress any key to continue...")
-                    else:
-                        display_banner()
-                        print(
-                            "** ** That biome is not large enough ** **\n**** Please choose another one ** **\n")
-                        print_habitats()
+                    choice_biome["biome"].add_animal(animal)
                 else:
                     display_banner()
                     print(
