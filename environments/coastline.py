@@ -1,12 +1,13 @@
 from interfaces import Identifiable
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
-
+from utilities import ReportMaker
 
 class Coastline(IContainsAnimals, Identifiable, IContainsPlants):
 
     def __init__(self):
         IContainsAnimals.__init__(self)
+        IContainsPlants.__init__(self)
         Identifiable.__init__(self)
         self.name = "Coastline"
         self.max_animals = 15
@@ -39,13 +40,17 @@ class Coastline(IContainsAnimals, Identifiable, IContainsPlants):
             print("Too many plants!")
             return False
 
-    def __str__(self):
-       return f"{self.name} has {self.plant_count()} plants and {self.animal_count()} animals!"
+    def print_list_options(self):
+        string_builder = f"{self.name} ("
+        total_list = super().animal_grouped_list() + super().plant_grouped_list()
+        list_count = len(total_list)
+        for index, item in enumerate(total_list.items()):
+            string_builder += f"{item[1]} {item[0]}"
+            if index + 1 != list_count:
+                string_builder += ","
+        string_builder += ")"
+        return string_builder
 
-    # def add_animal(self, animal):
-    #     try:
-    #         if animal.aquatic:
-    #             self.animals.append(animal)
-    #     except AttributeError:
-    #         raise AttributeError(
-    #             "Cannot add non-aquatic animals to the coastline")
+    def __str__(self):
+        return ReportMaker.report_maker(
+            self.name, self.id, super().animal_grouped_list(), super().plant_grouped_list())
