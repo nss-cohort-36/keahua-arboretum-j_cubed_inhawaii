@@ -13,33 +13,7 @@ class Coastline(IContainsAnimals, Identifiable, IContainsPlants):
         self.max_animals = 15
         self.max_plants = 3
 
-    def add_animal(self, animal):
-        if self.animal_count() < self.max_animals:
-
-            try:
-                if animal.aquatic and animal.cell_type == "hypotonic" or animal.cell_type == "isotonic":
-                    super().add_animal(animal)
-                    return True
-            except AttributeError:
-                raise AttributeError(
-                    "Cannot add non-aquatic, or freshwater animals to a coastline")
-        else:
-            print("Too many animals!")
-            return False
-
-    def add_plant(self, plant):
-        if self.plant_count() < self.max_plants:
-            try:
-                if plant.freshwater and plant.requires_current:
-                    super().add_plant(plant)
-                    return True
-            except AttributeError:
-                raise AttributeError(
-                    "Cannot add plants that require fresh water or stagnant water to a coastline biome")
-        else:
-            print("Too many plants!")
-            return False
-
+  
     def print_list_options(self):
         string_builder = f"{self.name} ("
         total_list = super().animal_grouped_list() + super().plant_grouped_list()

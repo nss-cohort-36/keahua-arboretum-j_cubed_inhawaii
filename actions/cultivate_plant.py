@@ -51,13 +51,7 @@ def cultivate_plant(arboretum):
                 choice_biome = option_list[choice_input - 1]
 
                 if choice_input <= option_list_length:
-                    if choice_biome["biome"].add_plant(plant) == True:
-                        input("\n\nPress any key to continue...")
-                    else:
-                        display_banner()
-                        print(
-                            "** ** That biome is not large enough ** **\n**** Please choose another one ** **\n")
-                        print_habitats()
+                 choice_biome["biome"].add_plant(plant) 
                 else:
                     display_banner()
                     print(
