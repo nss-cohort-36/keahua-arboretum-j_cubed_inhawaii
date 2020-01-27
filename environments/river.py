@@ -1,6 +1,8 @@
 from interfaces import Identifiable
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
+from utilities import ReportMaker
+
 
 
 class River(IContainsAnimals, IContainsPlants, Identifiable):
@@ -40,7 +42,30 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
             print("Too many plants!")
             return False
 
+    def print_list_options(self):
+        string_builder = f"{self.name} ("
+        total_list = super().animal_grouped_list()
+        list_count = len(total_list)
+        for index, item in enumerate(total_list.items()):
+            string_builder += f"{item[1]} {item[0]}"
+            if index + 1 != list_count:
+                string_builder += ","
+        string_builder += ")"
+        return string_builder
+
+
     def __str__(self):
-       return f"{self.name} has {self.plant_count()} plants and {self.animal_count()} animals!"
+        return ReportMaker.report_maker(
+            self.name, self.id, super().animal_grouped_list(), super().plant_grouped_list())
+
+
+
+
+
+
+
+
+
+    
 
 
