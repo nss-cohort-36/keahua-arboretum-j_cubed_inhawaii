@@ -42,7 +42,7 @@ class Coastline(IContainsAnimals, Identifiable, IContainsPlants):
 
     def print_list_options(self):
         string_builder = f"{self.name} ("
-        total_list = super().animal_grouped_list()
+        total_list = super().animal_grouped_list() + super().plant_grouped_list()
         list_count = len(total_list)
         for index, item in enumerate(total_list.items()):
             string_builder += f"{item[1]} {item[0]}"
