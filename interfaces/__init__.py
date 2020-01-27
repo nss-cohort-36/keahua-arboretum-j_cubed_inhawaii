@@ -1,5 +1,5 @@
-from .habitat import ITerrestrial
-from .habitat import IAquatic
+from .terrestrial import ITerrestrial
+from .aquatic import IAquatic
 from .animal import IFreshwater
 from .animal import ISaltwater
 from .animal import IFreshSaltWater
@@ -9,3 +9,5 @@ from .animal import ISwimming
 from .identifiable import Identifiable
 from .habitat import IContainsAnimals
 from .habitat import IContainsPlants
+from .plant import ISeedProducing
+from .drought_tolerant import IDroughtTolerant
