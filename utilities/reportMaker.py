@@ -1,6 +1,7 @@
 class ReportMaker:
     def report_maker(name, id, animal_list, plant_list):
-        string_builder = f"{name} {id}\n"
+        string_id = str(id)
+        string_builder = f"{name} [{string_id[:8]}]\n"
         total_list = animal_list + plant_list
         list_count = len(total_list)
 
