@@ -1,19 +1,22 @@
 import os
-from animals import RiverDolphin
+from environments import grassland
+from plants import Silversword
 from utilities import display_banner
-from utilities import release_animal_list_maker
+from utilities import cultivate_plant_list_maker
 
-def release_animal(arboretum):
+
+# TODO: Refactor cultivate_plant and this to DRY them up
+def cultivate_plant(arboretum):
     display_banner()
-    animal = None
+    plant = None
 
-    print("1. River Dolphin")
-    print("2. Dragonfly")
+    print("1. Silversword")
+    print("2. Crabgrass")
 
-    choice = input("Choose animal to release > ")
+    choice = input("Choose plant to cultivate > ")
 
     if choice == "1":
-        animal = RiverDolphin()
+        plant = Silversword()
 
     if choice == "2":
         pass
@@ -23,17 +26,13 @@ def release_animal(arboretum):
     def print_habitats():
         option_list = []
 
+        # cultivate_plant_list_maker(plant.aquatic and  arboretum.rivers, option_list)
 
-        release_animal_list_maker(animal.aquatic and animal.cell_type ==
-                                  "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list)
-
-        release_animal_list_maker(animal.aquatic and animal.cell_type ==
-                                  "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
-
+        cultivate_plant_list_maker(plant.terrestrial and plant.drought_tolerant, arboretum.grasslands, option_list)
 
         for index, dic in enumerate(option_list):
             print(f'{index + 1}. {dic["biome"].print_list_options()}')
-            # print(f'{index + 1}. {dic["biome"].name} ({dic["biome"].animal_count()} {"animal" if dic["biome"].animal_count() == 1 else "animals"})')
+            # print(f'{index + 1}. {dic["biome"].name} ({dic["biome"].plant_count()} {"plant" if dic["biome"].plant_count() == 1 else "plants"})')
 
         option_list_length = len(option_list)
         if option_list_length == 0:
@@ -41,7 +40,7 @@ def release_animal(arboretum):
             input("\n\nPress any key to go back to the main menu...")
         else:
             print(f"{option_list_length + 1}. Main Menu")
-            print("Release the animal into which biome?")
+            print("Release the plant into which biome?")
             choice = input("> ")
             if int(choice) == option_list_length + 1:
                 return
@@ -52,7 +51,7 @@ def release_animal(arboretum):
                 choice_biome = option_list[choice_input - 1]
 
                 if choice_input <= option_list_length:
-                    if choice_biome["biome"].add_animal(animal) == True:
+                    if choice_biome["biome"].add_plant(plant) == True:
                         input("\n\nPress any key to continue...")
                     else:
                         display_banner()

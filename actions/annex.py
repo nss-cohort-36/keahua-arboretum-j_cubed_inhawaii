@@ -1,11 +1,12 @@
 import os
 from environments import River
 from environments import Coastline
-from utilities import Banner
+from environments import Grassland
+from utilities import display_banner
 
 def annex_habitat(arboretum):
 
-    Banner.display_banner()
+    display_banner()
 
     print("1. River")
     print("2. Swamp")

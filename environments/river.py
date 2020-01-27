@@ -1,8 +1,7 @@
 from interfaces import Identifiable
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
-from utilities import ReportMaker
-
+from utilities import report_maker
 
 
 class River(IContainsAnimals, IContainsPlants, Identifiable):
@@ -54,5 +53,5 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
 
 
     def __str__(self):
-        return ReportMaker.report_maker(
+        return report_maker(
             self.name, self.id, super().animal_grouped_list(), super().plant_grouped_list())

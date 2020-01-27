@@ -9,3 +9,5 @@ from .animal import ISwimming
 from .identifiable import Identifiable
 from .habitat import IContainsAnimals
 from .habitat import IContainsPlants
+from .plant import ISeedProducing
+from .drought_tolerant import IDroughtTolerant
