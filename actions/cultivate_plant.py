@@ -2,7 +2,7 @@ import os
 from environments import grassland
 from plants import Silversword
 from utilities import display_banner
-from utilities import cultivate_plant_list_maker
+from utilities import biome_list_maker
 
 
 # TODO: Refactor cultivate_plant and this to DRY them up
@@ -26,9 +26,10 @@ def cultivate_plant(arboretum):
     def print_habitats():
         option_list = []
 
-        # cultivate_plant_list_maker(plant.aquatic and  arboretum.rivers, option_list)
+        # biome_list_maker(plant.aquatic and  arboretum.rivers, option_list)
 
-        cultivate_plant_list_maker(plant.terrestrial and plant.drought_tolerant, arboretum.grasslands, option_list)
+        biome_list_maker(plant.terrestrial and plant.drought_tolerant,
+                         arboretum.grasslands, option_list, plant)
 
         for index, dic in enumerate(option_list):
             print(f'{index + 1}. {dic["biome"].print_list_options()}')
@@ -51,7 +52,7 @@ def cultivate_plant(arboretum):
                 choice_biome = option_list[choice_input - 1]
 
                 if choice_input <= option_list_length:
-                 choice_biome["biome"].add_plant(plant) 
+                 choice_biome["biome"].add_plant(plant)
                 else:
                     display_banner()
                     print(
