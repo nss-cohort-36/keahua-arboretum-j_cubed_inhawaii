@@ -2,6 +2,7 @@ from interfaces import Identifiable
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
 from utilities import report_maker
+from utilities import grouped_option_string
 
 
 class River(IContainsAnimals, IContainsPlants, Identifiable):
@@ -14,17 +15,8 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
         self.max_animals = 3
         self.max_plants = 6
 
-
     def print_list_options(self):
-        string_builder = f"{self.name} ("
-        total_list = super().animal_grouped_list()
-        list_count = len(total_list)
-        for index, item in enumerate(total_list.items()):
-            string_builder += f"{item[1]} {item[0]}"
-            if index + 1 != list_count:
-                string_builder += ","
-        string_builder += ")"
-        return string_builder
+        return grouped_option_string(self, super().animal_grouped_list(), super().plant_grouped_list())
 
 
     def __str__(self):
