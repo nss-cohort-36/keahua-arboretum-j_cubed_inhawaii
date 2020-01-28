@@ -11,7 +11,7 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
         IContainsPlants.__init__(self)
         Identifiable.__init__(self)
         self.name = "River"
-        self.max_animals = 1
+        self.max_animals = 3
         self.max_plants = 6
 
 

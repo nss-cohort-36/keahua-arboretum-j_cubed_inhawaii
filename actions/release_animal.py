@@ -1,8 +1,7 @@
 import os
 from animals import RiverDolphin
 from utilities import display_banner
-from utilities import release_animal_list_maker
-
+from utilities import biome_list_maker
 
 def release_animal(arboretum):
     display_banner()
@@ -12,7 +11,7 @@ def release_animal(arboretum):
     print("2. Dragonfly")
 
     choice = input("Choose animal to release > ")
-
+    option_list = []
     if choice == "1":
         animal = RiverDolphin()
 
@@ -24,11 +23,11 @@ def release_animal(arboretum):
     def print_habitats():
         option_list = []
 
-        release_animal_list_maker(animal.aquatic and animal.cell_type ==
-                                  "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list)
+        biome_list_maker(animal.aquatic and animal.cell_type ==
+                                  "hypertonic" or animal.cell_type == "isotonic", arboretum.rivers, option_list, animal)
 
-        release_animal_list_maker(animal.aquatic and animal.cell_type ==
-                                  "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list)
+        biome_list_maker(animal.aquatic and animal.cell_type ==
+                                  "hypotonic" or animal.cell_type == "isotonic", arboretum.coastlines, option_list, animal)
 
         for index, dic in enumerate(option_list):
             print(f'{index + 1}. {dic["biome"].print_list_options()}')
